@@ -1411,3 +1411,8 @@ java.lang.NullPointerException: Cannot invoke "javax.swing.JTextField.getText()"
 2026-06-07 15:55:49,517 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 1mS.
 2026-06-07 16:24:13,441 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 
 2026-06-07 16:24:13,446 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 
+2026-06-07 17:31:54,101 [INFO] Activator:176 - 
+
+
+2026-06-07 17:31:54,104 [INFO] Activator:177 - !SESSION log4j initialized
+2026-06-07 17:32:01,758 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 

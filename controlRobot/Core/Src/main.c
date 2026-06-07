@@ -157,22 +157,14 @@ int main(void)
   while (1)
   {
 	 MPU6050_Read();
-	 int len = snprintf(uart_buf, sizeof(uart_buf),
-	                    "ax:%d ay:%d az:%d | gx:%d gy:%d gz:%d\r\n",
-	                    ax_raw, ay_raw, az_raw,
-	                    gx_raw, gy_raw, gz_raw);
-	 HAL_UART_Transmit(&huart3, (uint8_t*)uart_buf, len, HAL_MAX_DELAY);
-
-	 HAL_Delay(50);
-
 	 Leer_Encoders();
-
+	 HAL_Delay(50);
 	 int len = snprintf(uart_buf, sizeof(uart_buf),
-	                    "enc1:%ld enc2:%ld\r\n",
+	                    "ax:%d ay:%d az:%d gx:%d gy:%d gz:%d enc1:%ld enc2:%ld\r\n",
+	                    ax_raw, ay_raw, az_raw,
+	                    gx_raw, gy_raw, gz_raw,
 	                    encoder1, encoder2);
 	 HAL_UART_Transmit(&huart3, (uint8_t*)uart_buf, len, HAL_MAX_DELAY);
-
-	 HAL_Delay(50);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
