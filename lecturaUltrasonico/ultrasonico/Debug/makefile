@@ -63,8 +63,8 @@ all: main-build
 main-build: ultrasonico.elf secondary-outputs
 
 # Tool invocations
-ultrasonico.elf ultrasonico.map: $(OBJS) $(USER_OBJS) C:\Users\Dell\Desktop\Electronica\ UNAL\Matricula\ 9\Control\Proyecto\robotProyecto\ultrasonico\STM32F103RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "ultrasonico.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Dell\Desktop\Electronica UNAL\Matricula 9\Control\Proyecto\robotProyecto\ultrasonico\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ultrasonico.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+ultrasonico.elf ultrasonico.map: $(OBJS) $(USER_OBJS) C:\Users\Dell\Desktop\Electronica\ UNAL\Matricula\ 9\Control\Proyecto\proyectoControlRobotEquilibrio\lecturaUltrasonico\ultrasonico\STM32F103RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "ultrasonico.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Dell\Desktop\Electronica UNAL\Matricula 9\Control\Proyecto\proyectoControlRobotEquilibrio\lecturaUltrasonico\ultrasonico\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ultrasonico.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

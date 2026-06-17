@@ -102,8 +102,8 @@ int main(void)
         distancia_cm = Ultrasonic_GetDistance_cm();
         printf("Distancia: %lu cm\r\n", distancia_cm);
         HAL_Delay(200);
-  /* USER CODE END 3 */
   }
+  /* USER CODE END 3 */
 }
 
 /**
