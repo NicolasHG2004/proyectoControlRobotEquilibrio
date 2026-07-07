@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00017915  00000000  00000000  00006dff  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000499c  00000000  00000000  0001e714  2**0
+ 17 .debug_line   000049bc  00000000  00000000  0001e714  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00089fcb  00000000  00000000  000230b0  2**0
+ 18 .debug_str    00089ff1  00000000  00000000  000230d0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000ad07b  2**0
+ 19 .comment      00000043  00000000  00000000  000ad0c1  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00000d2c  00000000  00000000  000ad0c0  2**2
+ 20 .debug_frame  00000c50  00000000  00000000  000ad104  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000071  00000000  00000000  000addec  2**0
+ 21 .debug_line_str 00000097  00000000  00000000  000add54  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -3181,17 +3181,17 @@ static void RCC_Delay(uint32_t mdelay)
  800125c:	b570      	push	{r4, r5, r6, lr}
  800125e:	2600      	movs	r6, #0
  8001260:	4d0c      	ldr	r5, [pc, #48]	@ (8001294 <__libc_init_array+0x38>)
- 8001262:	4c0d      	ldr	r4, [pc, #52]	@ (8001298 <__libc_init_array+0x3c>)
- 8001264:	1b64      	subs	r4, r4, r5
- 8001266:	10a4      	asrs	r4, r4, #2
+ 8001262:	4b0d      	ldr	r3, [pc, #52]	@ (8001298 <__libc_init_array+0x3c>)
+ 8001264:	1b5b      	subs	r3, r3, r5
+ 8001266:	109c      	asrs	r4, r3, #2
  8001268:	42a6      	cmp	r6, r4
  800126a:	d109      	bne.n	8001280 <__libc_init_array+0x24>
- 800126c:	f000 f81a 	bl	80012a4 <_init>
- 8001270:	2600      	movs	r6, #0
+ 800126c:	2600      	movs	r6, #0
+ 800126e:	f000 f819 	bl	80012a4 <_init>
  8001272:	4d0a      	ldr	r5, [pc, #40]	@ (800129c <__libc_init_array+0x40>)
- 8001274:	4c0a      	ldr	r4, [pc, #40]	@ (80012a0 <__libc_init_array+0x44>)
- 8001276:	1b64      	subs	r4, r4, r5
- 8001278:	10a4      	asrs	r4, r4, #2
+ 8001274:	4b0a      	ldr	r3, [pc, #40]	@ (80012a0 <__libc_init_array+0x44>)
+ 8001276:	1b5b      	subs	r3, r3, r5
+ 8001278:	109c      	asrs	r4, r3, #2
  800127a:	42a6      	cmp	r6, r4
  800127c:	d105      	bne.n	800128a <__libc_init_array+0x2e>
  800127e:	bd70      	pop	{r4, r5, r6, pc}

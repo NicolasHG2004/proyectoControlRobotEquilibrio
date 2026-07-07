@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (13.3.rel1)
+# Toolchain: GNU Tools for STM32 (14.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -60,8 +60,8 @@ all: main-build
 main-build: blink.elf secondary-outputs
 
 # Tool invocations
-blink.elf blink.map: $(OBJS) $(USER_OBJS) C:\Users\Usuario\Desktop\UNAL\2026-1\Control\proyectoControl\blink\STM32F103RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "blink.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Usuario\Desktop\UNAL\2026-1\Control\proyectoControl\blink\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="blink.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+blink.elf blink.map: $(OBJS) $(USER_OBJS) C:\Users\Dell\Desktop\Electronica\ UNAL\Matricula\ 9\Control\Proyecto\proyectoControlRobotEquilibrio\blink\STM32F103RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "blink.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Dell\Desktop\Electronica UNAL\Matricula 9\Control\Proyecto\proyectoControlRobotEquilibrio\blink\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="blink.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
