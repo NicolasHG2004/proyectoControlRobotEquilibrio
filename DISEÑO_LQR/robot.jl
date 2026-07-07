@@ -96,7 +96,27 @@ display(polos_cl)
 println("¿Estable? ", all(abs.(polos_cl) .< 1))
 
 # ------------------------------------------------------------
-# 6. Precompensador kr DISCRETO (seguimiento de x5 = ψ)
+# 6. Filtro de Kalman discreto
+# ------------------------------------------------------------
+Rw = diagm([0.001, 0.01, 0.001, 0.01, 0.001, 0.01])
+Rv = diagm([0.01, 0.02, 0.005, 0.005, 0.05, 0.005])
+ 
+Rw_d = Rw .* Ts
+Rv_d = Rv
+ 
+L_d = kalman(sys, Rw_d, Rv_d)
+println("\nL_d:")
+display(L_d)
+ 
+polos_est = eigvals(Ad - L_d*Ad)
+println("¿Estimador estable? ", all(abs.(polos_est) .< 1))
+println("¿Lazo LQG completo estable? ",
+        all(abs.(polos_cl) .< 1) && all(abs.(polos_est) .< 1))
+
+
+
+# ------------------------------------------------------------
+# 7. Precompensador kr DISCRETO (seguimiento de x5 = ψ)
 # ------------------------------------------------------------
 C5 = [0.0  0.0  0.0  0.0  1.0  0.0]   # Salida: x5 (ángulo de giro ψ)
 
@@ -106,7 +126,7 @@ kr_d     = 1.0 / DC_dif_d
 @printf "\nPrecompensador kr discreto (seguimiento x5) = %.6f\n" kr_d
 
 # ------------------------------------------------------------
-# 7. Sistema de lazo cerrado DISCRETO con seguimiento de x5
+# 8. Sistema de lazo cerrado DISCRETO con seguimiento de x5
 # ------------------------------------------------------------
 Bd_r  = Bd * [kr_d; -kr_d]             # Vector de entrada efectivo (6x1)
 C_all = Matrix{Float64}(I, 6, 6)
@@ -115,7 +135,7 @@ D_r   = zeros(6, 1)
 sys_lc_d = ss(Acl_d, Bd_r, C_all, D_r, Ts)   # sistema discreto para lsim
 
 # ------------------------------------------------------------
-# 8. Simulación con lsim (discreta) — escalón unitario en x5
+# 9. Simulación con lsim (discreta) — escalón unitario en x5
 # ------------------------------------------------------------
 t_sim = 0.0:Ts:5.0
 ref   = ones(1, length(t_sim))
@@ -126,7 +146,7 @@ Y, t_out, X = lsim(sys_lc_d, ref, t_sim, [0.1, 0, 0, 0, 0, 0])
 U = -K_d * X .+ [kr_d; -kr_d] * ref
 
 # ------------------------------------------------------------
-# 9. Graficación — 2x2: estados + controles
+# 10. Graficación — 2x2: estados + controles
 # ------------------------------------------------------------
 p1 = plot(t_out, Y[5, :],
           label = L"x_5\ —\ \psi\ \mathrm{[rad]}",
@@ -181,7 +201,7 @@ savefig(fig, "respuesta_escalon_x5_discreto.png")
 println("\nGráfica guardada en: respuesta_escalon_x5_discreto.png")
 
 # ------------------------------------------------------------
-# 10. Resumen numérico
+# 11. Resumen numérico
 # ------------------------------------------------------------
 println("\n--- Resumen de la simulación (discreta) ---")
 @printf "  Referencia x5       :  1.000000 rad\n"
