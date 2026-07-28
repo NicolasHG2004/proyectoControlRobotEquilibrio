@@ -44,9 +44,9 @@ B = (inercia/r) .* [0     0   ;
                     B_61  B_62]
 ```
 
-A partir de este modelo se diseñaron tres controladores: dos PD (uno para la posición y otro para el ángulo de giro) y un PI para la velocidad angular.
+A partir de este modelo se diseñaron tres controladores: dos PD (uno para el ángulo y otro para el ángulo de giro) y un PI para la velocidad angular.
 
-### PD (Posición)
+### PD (Ángulo)
 
 Dado que en este caso no se buscaba controlar el ángulo de giro, el sistema se redujo a 4 variables de estado, combinando ambas señales de control en una sola entrada:
 
