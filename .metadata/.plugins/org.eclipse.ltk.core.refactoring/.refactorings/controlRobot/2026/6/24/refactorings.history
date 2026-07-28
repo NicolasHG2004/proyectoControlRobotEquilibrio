@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;controlRobot/Core/Src/mpu6050.c&apos; to &apos;i2c.c&apos;" description="Rename resource &apos;mpu6050.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/mpu6050.c" name="i2c.c" stamp="1781296355382" updateReferences="true"/>
-</session>
