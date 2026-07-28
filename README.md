@@ -318,5 +318,5 @@ En la matriz R se movió de 5 -> 2
 
 **Observaciones:**
 
-- El robot se mueve con maz fuerza y responde más rápido, es mas robusto a perturbaciones.
+- El robot se mueve con más fuerza y responde más rápido, es mas robusto a perturbaciones.
 
