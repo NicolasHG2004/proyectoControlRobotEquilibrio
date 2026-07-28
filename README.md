@@ -101,6 +101,9 @@ Lazo cerrado: TransferFunction{Continuous, ControlSystemsBase.SisoRational{Float
      1.0s^2 + 142.61403531028807s + 36980.401954862515
 ```
 
+![pd Posición Frecuencia](imagenes/pdPosicionFrecuencia.png)
+![pd Posición Salida](imagenes/pdPosicionSalida.png)
+
 ### PD (Ángulo de Giro)
 
 Se realizó un proceso muy similar al caso anterior; sin embargo, en esta ocasión no se llevó a cabo la reducción del sistema, sino que se trabajó directamente con el modelo completo de seis variables de estado. Al hacerlo, se obtuvo una matriz de funciones de transferencia, dado que ahora se tienen dos señales de control y seis variables de estado.
@@ -173,7 +176,7 @@ sys_cl = ss(Acl_c, B, C, D)
 
 Para verificar el comportamiento del control, se simuló la salida de cada variable de estado, para ello se usó ```lsim```.
 
-
+![Salidas LQR](imagenes/salidas_lqr.png)
 
 
 # Proceso iterativo de sintonización del controlador LQR
