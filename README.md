@@ -153,17 +153,18 @@ Y la función de transferencia de lazo cerrado resultante es:
   <img src="imagenes/pdAngGiroSalida1.png" width="350">
 </p>
 
+
 ### PI (Velocidad Lineal)
 
 El diseño del controlador PI de velocidad lineal parte del lazo interno de balance ya diseñado. Esto es necesario porque el sistema en lazo abierto es inestable —posee un polo en el semiplano derecho ($s \approx +20.3$)— y no es posible diseñar el lazo externo sin estabilizarlo primero.
 
 Con el lazo de balance cerrado, el robot adopta en estado estacionario un ángulo de inclinación constante proporcional al comando de velocidad. Como el ángulo no varía ($\dot{\theta} = 0$), el término derivativo del controlador PD se anula y la relación de equilibrio queda:
 
-$$\theta_{\text{deg}} = -\frac{\text{Velocity\_Pwm}}{\text{Balance\_Kp}}$$
+$$\theta_{\text{deg}} = -\frac{\text{VelocityPWM}}{\text{BalanceKp}}$$
 
 La aceleración lineal resultante es $\ddot{x} \approx g \cdot \theta_{\text{rad}}$, y al integrarla se obtiene la planta equivalente del lazo externo:
 
-$$G_{\text{vel}}(s) = \frac{\dot{x}(s)}{\text{Velocity\_Pwm}(s)} = \frac{K_v}{s}, \quad K_v = -\frac{g \cdot \pi}{180 \cdot \text{Balance\_Kp}}$$
+$$G_{\text{vel}}(s) = \frac{\dot{x}(s)}{\text{VelocityPWM}(s)} = \frac{K_v}{s}, \quad K_v = -\frac{g \cdot \pi}{180 \cdot \text{BalanceKp}}$$
 
 Los parámetros del lazo interno utilizados son los que vienen de `pdPosicionLS.jl`:
 
@@ -229,7 +230,7 @@ escala_velocidad = 62.70427382215649
 
 Velocity_Kp = (|Kp| / escala_velocidad) * 100  ≈ 6952  (Referencia fabricante: 7000)
 Velocity_Ki = (|Ki| / (escala_velocidad * 200)) * 100  ≈ 35    (Referencia fabricante: 35)
-
+```
 # Diseño de control LQR
 
 Se usó el modelo matricial del sistema con 6 variables de estado, luego se generó la matriz de controlabilidada y se verificó que fuera rango completo.
