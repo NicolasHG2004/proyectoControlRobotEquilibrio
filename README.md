@@ -154,82 +154,83 @@ Y la función de transferencia de lazo cerrado resultante es:
 </p>
 
 
+
 ### PI (Velocidad Lineal)
 
-El diseño del controlador PI de velocidad lineal parte del lazo interno de balance ya diseñado. Esto es necesario porque el sistema en lazo abierto es inestable —posee un polo en el semiplano derecho ($s \approx +20.3$)— y no es posible diseñar el lazo externo sin estabilizarlo primero.
+Para diseñar el lazo externo de velocidad, se parte del lazo interno de balance ya cerrado en estado estacionario ($\dot{\theta} = 0$). La planta equivalente resulta ser un integrador:
 
-Con el lazo de balance cerrado, el robot adopta en estado estacionario un ángulo de inclinación constante proporcional al comando de velocidad. Como el ángulo no varía ($\dot{\theta} = 0$), el término derivativo del controlador PD se anula y la relación de equilibrio queda:
+$$G_{\text{vel}}(s) = \frac{K_v}{s}, \quad K_v = -\frac{g}{\text{BalanceKp}}$$
 
-$$\theta_{\text{deg}} = -\frac{\text{VelocityPWM}}{\text{BalanceKp}}$$
-
-La aceleración lineal resultante es $\ddot{x} \approx g \cdot \theta_{\text{rad}}$, y al integrarla se obtiene la planta equivalente del lazo externo:
-
-$$G_{\text{vel}}(s) = \frac{\dot{x}(s)}{\text{VelocityPWM}(s)} = \frac{K_v}{s}, \quad K_v = -\frac{g \cdot \pi}{180 \cdot \text{BalanceKp}}$$
-
-Los parámetros del lazo interno utilizados son los que vienen de `pdPosicionLS.jl`:
+Utilizando las ganancias del PD de inclinación obtenidas previamente:
 
 ```julia
-Balance_Kp = 102
-Balance_Kd = 0.0
+Balance_Kp = -13341.291913
+Balance_Kd = -50.884877
 ```
 
-Con estos valores, la ganancia de la planta resulta:
+La ganancia de la planta de velocidad es:
+
+```
+G_vel(s) = 0.0007353110975781493 / s
+```
+
+Para el diseño del controlador PI por asignación de polos, se definieron los siguientes parámetros:
 
 ```julia
-K_v = -(g * π / 180) / Balance_Kp  # ≈ -0.001679 [m/s² / PWM]
+zeta = 0.898
+wn = 1.7965
 ```
 
-Y la planta del lazo externo es:
-
-```
-G_vel(s) = -0.0016785960747121935 / s
-```
-
-Para el diseño del controlador PI por asignación de polos se fijaron los siguientes parámetros de diseño:
+Las ganancias obtenidas para el controlador $C(s) = K_p + \frac{K_i}{s}$ fueron:
 
 ```julia
-zeta = 1.35    # Factor de amortiguamiento
-wn   = 2.71    # Frecuencia natural [rad/s]
+Kp = 4387.957710
+Ki = 4389.179302
 ```
 
-Los polos deseados en lazo cerrado son:
+Con estas ganancias, la función de transferencia de lazo cerrado resultante es:
 
 ```
-polos_deseados ≈ [-1.2008, -6.1162]
-```
-
-Se aplicó la ecuación diofántica $S(s)D(s) + R(s)N(s) = F(s)$ con $C(s) = \frac{K_p s + K_i}{s}$, igualando coeficientes con el polinomio deseado $s^2 + 2\zeta\omega_n s + \omega_n^2$:
-
-$$K_p = \frac{2\zeta\omega_n}{K_v}, \quad K_i = \frac{\omega_n^2}{K_v}$$
-
-Los valores de ganancia obtenidos fueron:
-
-```julia
-Kp = -4358.999827
-Ki = -4375.144271
-```
-
-Con el controlador definido, la función de transferencia de lazo cerrado resultante es:
-
-```
-T(s) =   7.317s + 7.344
-       --------------------------
-       s² + 7.317s + 7.344
+    3.2265139999999994s + 3.2274122499999995
+-------------------------------------------------
+1.0s^2 + 3.2265139999999994s + 3.2274122499999995
 ```
 
 Cuyos polos verifican la asignación deseada:
 
 ```
-Polos de T: [-1.2008, -6.1162]
+Polos de T: [-1.613257 + 0.790451im, -1.613257 - 0.790451im]
 ```
 
-Finalmente, las ganancias se convierten a las unidades internas del firmware del fabricante. El robot mide la velocidad en pulsos de encoder por ciclo de 5 ms (escala: `62.704 pulsos·ciclo/(m/s)`), y el firmware acumula el error del integrador a 200 Hz:
+Finalmente, para la implementación en el microcontrolador, se adaptaron estas ganancias a la escala del firmware (62.704 pulsos por ciclo de 5ms por cada m/s, e integrador a 200 Hz):
 
 ```julia
-escala_velocidad = 62.70427382215649
+Velocity_Kp = 6998
+Velocity_Ki = 35
+```
 
-Velocity_Kp = (|Kp| / escala_velocidad) * 100  ≈ 6952  (Referencia fabricante: 7000)
-Velocity_Ki = (|Ki| / (escala_velocidad * 200)) * 100  ≈ 35    (Referencia fabricante: 35)
+# Diseño de control LQR
+
+Se usó el modelo matricial del sistema con 6 variables de estado, luego se generó la matriz de controlabilidada y se verificó que fuera rango completo.
+
+```
+Wr    = ctrb(sys_c)
+rank_Wr = rank(Wr) | 6
+```
+
+Después, se definieron las matrices de penalización de estados y de señal de control.
+
+```
+Q_lqr = diagm([2000.0, 100.0, 20000.0, 700.0, 10000.0, 8000.0])
+R_lqr = [2.0  0.0;
+         0.0  2.0]
+```
+Asimismo, se planteó el lazo cerrado y usando una función de julia se creó el lqr.
+
+```
+Acl_c  = A - B*K
+sys_cl = ss(Acl_c, B, C, D)
+```
 ```
 # Diseño de control LQR
 
