@@ -1,9 +1,0 @@
-../Core/Src/main.c:46:6:MPU6050_Init	32	static
-../Core/Src/main.c:68:6:MPU6050_Read_All	40	static
-../Core/Src/main.c:102:5:main	40	static
-../Core/Src/main.c:134:6:SystemClock_Config	72	static
-../Core/Src/main.c:160:13:MX_I2C1_Init	8	static
-../Core/Src/main.c:174:13:MX_USART1_UART_Init	8	static
-../Core/Src/main.c:187:13:MX_GPIO_Init	40	static
-../Core/Src/main.c:207:5:__io_putchar	16	static
-../Core/Src/main.c:214:6:Error_Handler	4	static,ignoring_inline_asm
