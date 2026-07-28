@@ -206,6 +206,17 @@ A continuación se describe el proceso iterativo seguido para la sintonización 
 - K5 = 99.99
 - K6 = 29.97
 
+**Pesos de la matriz \(Q\):**
+
+| Variable | Peso |
+|----------|-----:|
+| Posición | 100000 |
+| Velocidad lineal | 100 |
+| Ángulo de cabeceo | 5000 |
+| Velocidad angular | 700 |
+| Ángulo de giro | 100000 |
+| Velocidad de giro | 8000 |
+
 **Observaciones:**
 
 - La estabilización del robot presenta menores oscilaciones.
