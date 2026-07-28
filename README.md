@@ -153,6 +153,82 @@ Y la función de transferencia de lazo cerrado resultante es:
   <img src="imagenes/pdAngGiroSalida1.png" width="350">
 </p>
 
+### PI (Velocidad Lineal)
+
+El diseño del controlador PI de velocidad lineal parte del lazo interno de balance ya diseñado. Esto es necesario porque el sistema en lazo abierto es inestable —posee un polo en el semiplano derecho ($s \approx +20.3$)— y no es posible diseñar el lazo externo sin estabilizarlo primero.
+
+Con el lazo de balance cerrado, el robot adopta en estado estacionario un ángulo de inclinación constante proporcional al comando de velocidad. Como el ángulo no varía ($\dot{\theta} = 0$), el término derivativo del controlador PD se anula y la relación de equilibrio queda:
+
+$$\theta_{\text{deg}} = -\frac{\text{Velocity\_Pwm}}{\text{Balance\_Kp}}$$
+
+La aceleración lineal resultante es $\ddot{x} \approx g \cdot \theta_{\text{rad}}$, y al integrarla se obtiene la planta equivalente del lazo externo:
+
+$$G_{\text{vel}}(s) = \frac{\dot{x}(s)}{\text{Velocity\_Pwm}(s)} = \frac{K_v}{s}, \quad K_v = -\frac{g \cdot \pi}{180 \cdot \text{Balance\_Kp}}$$
+
+Los parámetros del lazo interno utilizados son los que vienen de `pdPosicionLS.jl`:
+
+```julia
+Balance_Kp = 102
+Balance_Kd = 0.0
+```
+
+Con estos valores, la ganancia de la planta resulta:
+
+```julia
+K_v = -(g * π / 180) / Balance_Kp  # ≈ -0.001679 [m/s² / PWM]
+```
+
+Y la planta del lazo externo es:
+
+```
+G_vel(s) = -0.0016785960747121935 / s
+```
+
+Para el diseño del controlador PI por asignación de polos se fijaron los siguientes parámetros de diseño:
+
+```julia
+zeta = 1.35    # Factor de amortiguamiento
+wn   = 2.71    # Frecuencia natural [rad/s]
+```
+
+Los polos deseados en lazo cerrado son:
+
+```
+polos_deseados ≈ [-1.2008, -6.1162]
+```
+
+Se aplicó la ecuación diofántica $S(s)D(s) + R(s)N(s) = F(s)$ con $C(s) = \frac{K_p s + K_i}{s}$, igualando coeficientes con el polinomio deseado $s^2 + 2\zeta\omega_n s + \omega_n^2$:
+
+$$K_p = \frac{2\zeta\omega_n}{K_v}, \quad K_i = \frac{\omega_n^2}{K_v}$$
+
+Los valores de ganancia obtenidos fueron:
+
+```julia
+Kp = -4358.999827
+Ki = -4375.144271
+```
+
+Con el controlador definido, la función de transferencia de lazo cerrado resultante es:
+
+```
+T(s) =   7.317s + 7.344
+       --------------------------
+       s² + 7.317s + 7.344
+```
+
+Cuyos polos verifican la asignación deseada:
+
+```
+Polos de T: [-1.2008, -6.1162]
+```
+
+Finalmente, las ganancias se convierten a las unidades internas del firmware del fabricante. El robot mide la velocidad en pulsos de encoder por ciclo de 5 ms (escala: `62.704 pulsos·ciclo/(m/s)`), y el firmware acumula el error del integrador a 200 Hz:
+
+```julia
+escala_velocidad = 62.70427382215649
+
+Velocity_Kp = (|Kp| / escala_velocidad) * 100  ≈ 6952  (Referencia fabricante: 7000)
+Velocity_Ki = (|Ki| / (escala_velocidad * 200)) * 100  ≈ 35    (Referencia fabricante: 35)
 
 # Diseño de control LQR
 
