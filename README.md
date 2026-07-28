@@ -143,7 +143,37 @@ Y la función de transferencia de lazo cerrado resultante es:
 1.0s^2 + 16.90473046962797s + 1450.092459258
 ```
 
-##ACÁ LUCIANO
+# Diseño de control LQR
+
+Se usó el modelo matricial del sistema con 6 variables de estado, luego se generó la matriz de controlabilidada y se verificó que fuera rango completo.
+
+```
+Wr    = ctrb(sys_c)
+rank_Wr = rank(Wr) | 6
+```
+
+Después, se definieron las matrices de penalización de estados y de señal de control.
+
+```
+Q_lqr = diagm([2000.0, 100.0, 20000.0, 700.0, 10000.0, 8000.0])
+R_lqr = [2.0  0.0;
+         0.0  2.0]
+```
+Asimismo, se planteó el lazo cerrado y usando una función de julia se creó el lqr.
+
+```
+Acl_c  = A - B*K
+sys_cl = ss(Acl_c, B, C, D)
+```
+```
+2×6 Matrix{Float64}:
+ -22.3607  -41.4295  -334.177  -22.2427   50.0   45.2701
+ -22.3607  -41.4295  -334.177  -22.2427  -50.0  -45.2701
+```
+
+Para verificar el comportamiento del control, se simuló la salida de cada variable de estado, para ello se usó ```lsim```.
+
+
 
 
 # Proceso iterativo de sintonización del controlador LQR
