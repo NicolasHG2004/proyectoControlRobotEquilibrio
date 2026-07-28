@@ -148,6 +148,12 @@ Y la función de transferencia de lazo cerrado resultante es:
 1.0s^2 + 16.90473046962797s + 1450.092459258
 ```
 
+<p align="center">
+  <img src="imagenes/pdAnguloGiroFrecuencia.png" width="350">
+  <img src="imagenes/pdAnguloGiroSalida.png" width="350">
+</p>
+
+
 # Diseño de control LQR
 
 Se usó el modelo matricial del sistema con 6 variables de estado, luego se generó la matriz de controlabilidada y se verificó que fuera rango completo.
