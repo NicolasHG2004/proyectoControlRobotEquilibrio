@@ -157,7 +157,9 @@ Y la función de transferencia de lazo cerrado resultante es:
 
 ### PI (Velocidad Lineal)
 
-Para diseñar el lazo externo de velocidad, se parte del lazo interno de balance ya cerrado en estado estacionario ($\dot{\theta} = 0$). La planta equivalente resulta ser un integrador:
+No es posible diseñar el controlador PI de velocidad extrayendo directamente la función de transferencia de lazo abierto desde las matrices del sistema. Al hacerlo, se obtiene una planta de 4to orden inherentemente inestable. Si a esta planta se le añade un controlador PI (que introduce un integrador), la ecuación característica de lazo cerrado resulta ser un polinomio de **grado 5**. Dado que un PI solo posee **2 parámetros** ($K_p, K_i$), matemáticamente no hay suficientes grados de libertad para reubicar los 5 polos y estabilizar el sistema.
+
+Por ello, se utiliza una arquitectura en cascada. Primero se cierra el lazo interno de balance (que estabiliza el ángulo). Al hacer esto, el lazo externo (velocidad) percibe una planta mucho más simple: al exigir una velocidad, el robot adopta un ángulo de inclinación constante ($\dot{\theta} = 0$). Como la aceleración es proporcional a este ángulo, la velocidad se comporta como la integral de la aceleración. Así, la planta de velocidad se reduce a un simple integrador:
 
 $$G_{\text{vel}}(s) = \frac{K_v}{s}, \quad K_v = -\frac{g}{\text{BalanceKp}}$$
 
