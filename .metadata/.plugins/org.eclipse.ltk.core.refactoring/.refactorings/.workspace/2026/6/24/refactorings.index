@@ -1,0 +1,6 @@
+1781289883148	Delete resource 'blink/Core/Src/mpu6050.c'
+1781296243325	Delete resource 'i2c'
+1781297131162	Delete resource 'controlRobot/Core/Src/mpu6050.c'
+1781297171970	Delete resource 'controlRobot/Core/Src/stm32f1xx_hal_msp.c'
+1781297600989	Delete resource 'controlRobot'
+1781297607507	Delete resource 'i2c'

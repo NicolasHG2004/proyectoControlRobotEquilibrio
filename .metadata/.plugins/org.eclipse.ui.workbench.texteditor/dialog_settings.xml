@@ -3,8 +3,42 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
-		<item value="user code begin 2"/>
-		<item value="user code begin 0"/>
+		<item value="i2c1"/>
+		<item value="usb"/>
+		<item value="i2c"/>
+		<item value="uart1"/>
+		<item value="usart1"/>
+		<item value="i2c2"/>
 		<item value="while"/>
+		<item value="mx_i2c2_init"/>
+		<item value="while (1)"/>
+		<item value="while(1)"/>
+		<item value="mx_usart1_uart_init"/>
+		<item value="2"/>
+		<item value="begin 2"/>
+		<item value="mx_gpio_init"/>
+		<item value="i2c_mema"/>
 	</list>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="/* USER CODE BEGIN Header */"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="/* USER CODE BEGIN Header */"/>
+			<item value="error"/>
+			<item value=""/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="530"/>
+		<item key="DIALOG_Y_ORIGIN" value="108"/>
+		<item key="DIALOG_WIDTH" value="322"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
 </section>

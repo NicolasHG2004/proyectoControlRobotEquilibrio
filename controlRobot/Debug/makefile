@@ -63,8 +63,13 @@ all: main-build
 main-build: controlRobot.elf secondary-outputs
 
 # Tool invocations
+<<<<<<< HEAD
 controlRobot.elf controlRobot.map: $(OBJS) $(USER_OBJS) C:\Users\Dell\Desktop\Electronica\ UNAL\Matricula\ 9\Control\Proyecto\proyectoControlRobotEquilibrio\controlRobot\STM32F103RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-gcc -o "controlRobot.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Dell\Desktop\Electronica UNAL\Matricula 9\Control\Proyecto\proyectoControlRobotEquilibrio\controlRobot\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="controlRobot.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+=======
+controlRobot.elf controlRobot.map: $(OBJS) $(USER_OBJS) C:\Users\Usuario\Desktop\UNAL\2026-1\Control\proyectoControl\controlRobot\STM32F103RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "controlRobot.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Usuario\Desktop\UNAL\2026-1\Control\proyectoControl\controlRobot\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="controlRobot.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+>>>>>>> 445cb88 (Subo LQR funcional a nivel teórico para 6 y 4 VE. También subo intento de primer PID para estabilizar ángulo. Debemos de revisar este último por un error)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
