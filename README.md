@@ -150,7 +150,7 @@ Y la función de transferencia de lazo cerrado resultante es:
 
 <p align="center">
   <img src="imagenes/pdAnguloGiroFrecuencia.png" width="350">
-  <img src="imagenes/pdAngGiroSalida.png" width="350">
+  <img src="imagenes/pdAngGiroSalida1.png" width="350">
 </p>
 
 
