@@ -179,7 +179,7 @@ sys_cl = ss(Acl_c, B, C, D)
 Para verificar el comportamiento del control, se simuló la salida de cada variable de estado, para ello se usó ```lsim```.
 
 <p align="center">
-  <img src="imagenes/salidas_lqr.png" width="350">
+  <img src="imagenes/salidas_lqr.png" width="450">
 </p>
 
 
