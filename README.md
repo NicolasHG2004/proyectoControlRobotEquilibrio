@@ -233,7 +233,7 @@ Asimismo, se planteó el lazo cerrado y usando una función de julia se creó el
 Acl_c  = A - B*K
 sys_cl = ss(Acl_c, B, C, D)
 ```
-```
+
 # Diseño de control LQR
 
 Se usó el modelo matricial del sistema con 6 variables de estado, luego se generó la matriz de controlabilidada y se verificó que fuera rango completo.
@@ -243,13 +243,16 @@ Wr    = ctrb(sys_c)
 rank_Wr = rank(Wr) | 6
 ```
 
-Después, se definieron las matrices de penalización de estados y de señal de control.
+Después, se definieron las matrices de penalización de estados y de señal de control. Cabe resaltar que ambos valores se fijaron después de un largo proceso de iteración, donde se fue probando el comportamiento de la planta según el nivel de penalización de cada una de las variables de estado.
 
 ```
-Q_lqr = diagm([2000.0, 100.0, 20000.0, 700.0, 10000.0, 8000.0])
-R_lqr = [2.0  0.0;
-         0.0  2.0]
+Q_lqr = diagm([200000.0, 5000.0, 80000.0, 1000.0, 50000.0, 3000.0])
+R_lqr = [5.0  0.0;
+         0.0  5.0]
 ```
+
+Al colocar valores muy altos en variables como la posición, ángulo y ángulo de giro, el controlador le da mayor prioridad y esfuerzo de llevar el error de estos estados a cero, lo que como resultado logró que la planta tuviera un controlamiento muy óptimo y que se pudiera aprovechar la respuesta del sensor ultrasonido a posibles obstrucciones cercanas.
+
 Asimismo, se planteó el lazo cerrado y usando una función de julia se creó el lqr.
 
 ```
