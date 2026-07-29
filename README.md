@@ -217,6 +217,13 @@ Velocity_Ki = 35
 </p>
 
 
+
+https://github.com/user-attachments/assets/a50bc68f-67a5-42ae-9d50-2b9631b2ed64
+
+
+
+
+
 # Diseño de control LQR
 
 Se usó el modelo matricial del sistema con 6 variables de estado, luego se generó la matriz de controlabilidada y se verificó que fuera rango completo.
@@ -292,6 +299,13 @@ A continuación se describe el proceso iterativo seguido para la sintonización 
 
 ---
 
+
+
+https://github.com/user-attachments/assets/d0819f03-7b3c-41e9-b314-bf7b7ceecce2
+
+
+
+
 ## Iteración 2
 
 **Ganancias del controlador:**
@@ -321,6 +335,12 @@ A continuación se describe el proceso iterativo seguido para la sintonización 
 
 ---
 
+
+
+https://github.com/user-attachments/assets/2edb2100-1ec1-482c-94cd-843ae6aa05c4
+
+
+
 ## Iteración 3
 
 **Ganancias del controlador:**
@@ -347,6 +367,11 @@ A continuación se describe el proceso iterativo seguido para la sintonización 
 **Observaciones:**
 
 Mejorora en el giro sin embargo es muy suceptible a perturbaciones en el ángulo de cabeceo lo que haceque al iniciar unpoco inclinado no sea capaz de estabilizarse o oscile demaiado para hacerlo
+
+
+
+https://github.com/user-attachments/assets/c90cd3d3-4a0f-4e0c-934a-9fd6c5b81a53
+
 
 
 ## Iteración 4
@@ -376,6 +401,12 @@ Mejorora en el giro sin embargo es muy suceptible a perturbaciones en el ángulo
 
 - Mayor robustez pero, sin embargo se nota una disminucipon en el exfuerzo de control
 
+
+
+https://github.com/user-attachments/assets/acdc48ad-9697-428f-9bd6-9b7482f5c218
+
+
+
 ## Iteración 5
 
 **Ganancias del controlador:**
@@ -404,4 +435,9 @@ En la matriz R se movió de 5 -> 2
 **Observaciones:**
 
 - El robot se mueve con más fuerza y responde más rápido, es mas robusto a perturbaciones.
+
+
+
+https://github.com/user-attachments/assets/25b6682a-5b27-48e0-85da-214b71374914
+
 
