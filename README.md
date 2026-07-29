@@ -220,6 +220,8 @@ Velocity_Ki = 35
 <p align="center">
   <video src="https://raw.githubusercontent.com/NicolasHG2004/proyectoControlRobotEquilibrio/main/imagenes/iteracion1.mp4" width="600" controls></video>
 </p>
+
+
 # Diseño de control LQR
 
 Se usó el modelo matricial del sistema con 6 variables de estado, luego se generó la matriz de controlabilidada y se verificó que fuera rango completo.
