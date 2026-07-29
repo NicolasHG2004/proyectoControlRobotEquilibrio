@@ -263,6 +263,11 @@ sys_cl = ss(Acl_c, B, C, D)
  -22.3607  -41.4295  -334.177  -22.2427  -50.0  -45.2701
 ```
 
+Después, se obtuvieron los valores de K
+
+```
+k1 = -141.42135623741655 k2 = -117.63713398697547 k3 = -380.48007997996456 k4 = -24.648549715471393 k5 = 70.71067811865488 k6 = 19.231167145134375
+```
 Para verificar el comportamiento del control, se simuló la salida de cada variable de estado, para ello se usó ```lsim```.
 
 <p align="center">
