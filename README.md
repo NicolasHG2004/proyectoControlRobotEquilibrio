@@ -340,8 +340,8 @@ Se observó que la alta ganancia asociada al estado de posición provocaba que, 
 
 **Observaciones:**
 
-- La estabilización del robot presenta menores oscilaciones.
-- Sin embargo, el giro continúa siendo inestable.
+- La estabilización del robot presenta muchas oscilaciones e inestabilidad.
+- El giro continúa siendo inestable.
 
 ---
 
