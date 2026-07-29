@@ -309,7 +309,7 @@ static const RoutineStep routine[] = {
 A continuación, se describe el proceso iterativo seguido para la sintonización del controlador LQR, indicando las ganancias utilizadas en cada prueba y las observaciones obtenidas. Este proceso fue necesario debido a que la configuración inicial del LQR para el modo de balanceo no ofrecía un desempeño adecuado durante los giros.
 
 Se observó que la alta ganancia asociada al estado de posición provocaba que, al ejecutar un giro, el controlador intentara corregir simultáneamente la posición del robot. Esto generaba una interferencia con la maniobra de giro, ocasionando una pérdida de estabilidad y produciendo oscilaciones de balanceo de gran amplitud. Por esta razón, fue necesario ajustar las ganancias del controlador hasta obtener un compromiso adecuado entre la estabilidad en balanceo y la capacidad de realizar giros de forma suave y estable.
----
+
 
 ## Iteración 1
 
