@@ -1,6 +1,12 @@
 # Control de un Robot de Balance (MicroROS Self-Balancing Robot Car)
 
-El presente repositorio consta de la documentación para el proyecto de la asignatura de Control, el cual consistió en diseñar dos controladores —un LQR y un PID— para un robot de balance tipo *MicroROS Self-Balancing Robot Car*. A continuación se presenta la explicación de los controladores implementados.
+### Leonardo Acevedo
+### Ariel Cárdenas 
+### Nicolás Hinestroza 
+### Luciano Manrique
+
+
+El presente repositorio consta de la documentación para el proyecto de la asignatura de Control, el cual consistió en diseñar dos controladores un LQR y un PID para un robot de balance tipo *MicroROS Self-Balancing Robot Car*. A continuación se presenta la explicación de los controladores implementados.
 
 ## PID
 
