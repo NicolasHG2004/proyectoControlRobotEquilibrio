@@ -230,7 +230,7 @@ R_lqr = [5.0  0.0;
 
 Al colocar valores muy altos en variables como la posición, ángulo y ángulo de giro, el controlador le da mayor prioridad y esfuerzo de llevar el error de estos estados a cero, lo que como resultado logró que la planta tuviera un controlamiento muy óptimo y que se pudiera aprovechar la respuesta del sensor ultrasonido contra posibles obstrucciones cercanas.
 
-De igual manera, el valor escogido en la matriz R fue escogido después de iteraciones donde se comprobó que a valores bajos si bien la respuesta del control era rápida, al final terminaba en respuestas con movimientos muy bruscos que desestabilizaban la planta, mientras que a valores altos la respuesta era muy lenta, esto llevó a probas hasta encontrar el punto medio entre una respuesta rápida y movimientos no tan bruscos.
+De igual manera, el valor escogido en la matriz R fue escogido después de iteraciones donde se comprobó que a valores bajos si bien la respuesta del control era rápida, al final terminaba en respuestas con movimientos muy bruscos que desestabilizaban la planta, mientras que a valores altos la respuesta era muy lenta, esto llevó a pruebas hasta encontrar el punto medio entre una respuesta rápida y movimientos no tan bruscos.
 
 Luego, se planteó el lazo cerrado y usando una función de la libreria ```ControlSystems.jl``` de julia se creó el lqr.
 
