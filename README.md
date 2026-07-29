@@ -383,8 +383,6 @@ https://github.com/user-attachments/assets/d0819f03-7b3c-41e9-b314-bf7b7ceecce2
 
 
 
-https://github.com/user-attachments/assets/2edb2100-1ec1-482c-94cd-843ae6aa05c4
-
 
 
 ## Iteración 3
@@ -412,11 +410,8 @@ https://github.com/user-attachments/assets/2edb2100-1ec1-482c-94cd-843ae6aa05c4
 
 **Observaciones:**
 
-Mejorora en el giro sin embargo es muy suceptible a perturbaciones en el ángulo de cabeceo lo que haceque al iniciar unpoco inclinado no sea capaz de estabilizarse o oscile demaiado para hacerlo
+Mejora en el giro sin embargo es muy susceptible a perturbaciones en el ángulo de cabeceo lo que hace que al iniciar un poco inclinado no sea capaz de estabilizarse o oscile demasiado para hacerlo
 
-
-
-https://github.com/user-attachments/assets/c90cd3d3-4a0f-4e0c-934a-9fd6c5b81a53
 
 
 
@@ -445,7 +440,7 @@ https://github.com/user-attachments/assets/c90cd3d3-4a0f-4e0c-934a-9fd6c5b81a53
 
 **Observaciones:**
 
-- Mayor robustez pero, sin embargo se nota una disminucipon en el exfuerzo de control
+- Mayor robustez pero, sin embargo se nota una disminución en el esfuerzo de control
 
 
 
