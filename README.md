@@ -211,6 +211,11 @@ Velocity_Kp = 6998
 Velocity_Ki = 35
 ```
 
+<p align="center">
+  <img src="imagenes/piVelocidadFrecuencia.png" width="350">
+  <img src="imagenes/piVelocidadSalida.png" width="350">
+</p>
+
 
 <p align="center">
   <video src="https://raw.githubusercontent.com/NicolasHG2004/proyectoControlRobotEquilibrio/main/imagenes/iteracion1.mp4" width="600" controls></video>
