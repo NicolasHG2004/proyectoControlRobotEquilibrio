@@ -270,10 +270,45 @@ Para verificar el comportamiento del control, se simuló la salida de cada varia
 </p>
 
 
-# Proceso iterativo de sintonización del controlador LQR
+# Proceso iterativo de sintonización del controlador LQR enfocado en el seguimiento de trayectorias
 
-A continuación se describe el proceso iterativo seguido para la sintonización del controlador LQR, indicando las ganancias utilizadas en cada prueba y las observaciones obtenidas.
+Como bono para la el proyecto se sintonizo un LQR enfocado a seguir trayectorias de manera optima, para ello se programa una trayectoria predefinida con el siguiente código:
 
+```
+typedef struct {
+    enCarState state;
+    u16 duration;  // Duration in control cycles (200Hz), e.g. 200 = 1s
+} RoutineStep;
+
+static const RoutineStep routine[] = {
+    
+    {enRUN,    300},    // Step 0:  Forward 1.5s (~0.75m)
+    {enSTOP,   100},    // Step 1:  Brief pause 0.5s
+    {enTLEFT,  35},    // Step 2:  Spin left ~90 deg
+    {enSTOP,   100},    // Step 3:  Brief pause
+    {enRUN,    300},    // Step 4:  Forward 1.5s
+    {enSTOP,   100},    // Step 5:  Brief pause
+    {enTLEFT,  35},    // Step 6:  Spin left ~90 deg
+    {enSTOP,   100},    // Step 7:  Brief pause
+    {enRUN,    300},    // Step 8:  Forward 1.5s
+    {enSTOP,   100},    // Step 9:  Brief pause
+    {enTLEFT,  35},    // Step 10: Spin left ~90 deg
+    {enSTOP,   100},    // Step 11: Brief pause
+    {enRUN,    300},    // Step 12: Forward 1.5s (back to start)
+    {enSTOP,   100},    // Step 13: Brief pause
+    {enTLEFT,  35},    // Step 14: Spin left ~90 deg (original heading)
+    // Phase 2: Pause + Circle (circle returns to start by nature)
+    {enSTOP,   400},    // Step 15: Pause 2s at starting point
+    {enCIRCLE, 100},   // Step 16: Full circle R=0.45m (~11.3s)
+    {enSTOP,   400},    // Step 17: Pause 2s before repeating
+
+};
+
+```
+
+A continuación, se describe el proceso iterativo seguido para la sintonización del controlador LQR, indicando las ganancias utilizadas en cada prueba y las observaciones obtenidas. Este proceso fue necesario debido a que la configuración inicial del LQR para el modo de balanceo no ofrecía un desempeño adecuado durante los giros.
+
+Se observó que la alta ganancia asociada al estado de posición provocaba que, al ejecutar un giro, el controlador intentara corregir simultáneamente la posición del robot. Esto generaba una interferencia con la maniobra de giro, ocasionando una pérdida de estabilidad y produciendo oscilaciones de balanceo de gran amplitud. Por esta razón, fue necesario ajustar las ganancias del controlador hasta obtener un compromiso adecuado entre la estabilidad en balanceo y la capacidad de realizar giros de forma suave y estable.
 ---
 
 ## Iteración 1
